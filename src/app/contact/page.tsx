@@ -49,16 +49,6 @@ export default function ContactPage() {
                 <p className="text-muted">London, United Kingdom</p>
               </div>
 
-              <div>
-                <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-blue mb-3">
-                  Follow Us
-                </h3>
-                <div className="flex gap-4">
-                  <a href="#" className="text-muted hover:text-charcoal transition-colors text-sm">
-                    X
-                  </a>
-                </div>
-              </div>
             </div>
 
             {/* Form */}
