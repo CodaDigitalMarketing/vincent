@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const designPrinciples = [
   "Light-Filled Architecture",
@@ -20,6 +20,7 @@ const extensionTypes = [
     buildTime: "8 to 12 Weeks",
     route: "GPDO / Permitted Dev",
     valueAdded: "15-20%",
+    image: "/images/portfolio-1.jpg",
     benefits: [
       "Space without Sacrifice: Create a luxury master suite without losing an inch of your garden.",
       "Minimal Disruption: Most work is scaffold-based and external, keeping your home life peaceful.",
@@ -32,9 +33,10 @@ const extensionTypes = [
     buildTime: "10 to 14 Weeks",
     route: "Full Planning / GPDO",
     valueAdded: "5-10%",
+    image: "/images/portfolio-2.jpg",
     benefits: [
       "Unlocks Dead Space: Transforms narrow, unused alleyways into expansive living areas.",
-      "Kitchen Transformation: Ideal for Victorian terraces to create that sought-after wide kitchen island layout.",
+      "Kitchen Transformation: Ideal for Victorian terraces to create that sought-after kitchen island layout.",
       "Light Filled: Perfect for glass roof features that bring natural light into the core of the house.",
     ],
   },
@@ -44,6 +46,7 @@ const extensionTypes = [
     buildTime: "16 to 24 Weeks",
     route: "Full Planning",
     valueAdded: "15-20%",
+    image: "/images/portfolio-3.jpg",
     benefits: [
       "Double the Impact: Add both a massive kitchen/diner and an extra bedroom with ensuite upstairs.",
       "Cost Effective: Lower cost per square metre compared to building two separate extensions.",
@@ -56,6 +59,7 @@ const extensionTypes = [
     buildTime: "10 to 16 Weeks",
     route: "GPDO / Permitted Dev",
     valueAdded: "10-15%",
+    image: "/images/portfolio-4.jpg",
     benefits: [
       "Indoor Outdoor Living: Perfectly designed for bifold doors and seamless garden integration.",
       "Open Plan Living: Removes cramped internal walls to create a modern, social heart of the home.",
@@ -160,11 +164,64 @@ function BeforeAfterSlider() {
   );
 }
 
+function TestimonialsCarousel({ testimonials }: { testimonials: { name: string; location: string; quote: string }[] }) {
+  // Duplicate testimonials for seamless infinite loop
+  const doubled = [...testimonials, ...testimonials];
+
+  return (
+    <section className="py-24 md:py-32 bg-ice/50 overflow-hidden">
+      <style>{`
+        @keyframes testimonialScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+      <div className="mx-auto max-w-6xl px-6 mb-12">
+        <div className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-blue mb-4">
+            What Clients Say
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-poppins)] text-charcoal">
+            Testimonials
+          </h2>
+        </div>
+      </div>
+
+      <div className="relative">
+        <div
+          className="flex gap-6"
+          style={{
+            width: "max-content",
+            animation: "testimonialScroll 35s linear infinite",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.animationPlayState = "paused")}
+          onMouseLeave={(e) => (e.currentTarget.style.animationPlayState = "running")}
+        >
+          {doubled.map((t, i) => (
+            <div
+              key={`${t.name}-${i}`}
+              className="card-light rounded-2xl p-8 w-[340px] md:w-[420px] h-[220px] flex-shrink-0 flex flex-col"
+            >
+              <p className="text-muted leading-relaxed italic flex-1">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div className="mt-auto pt-4">
+                <p className="text-charcoal font-medium text-sm">{t.name}</p>
+                <p className="text-muted text-xs">{t.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function ExtensionsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-40 pb-64 md:pb-80 lg:pb-96 overflow-hidden grain bg-charcoal">
+      <section className="relative pt-40 pb-24 overflow-hidden grain bg-charcoal">
         <video
           autoPlay
           muted
@@ -236,7 +293,17 @@ export default function ExtensionsPage() {
                   <span className="text-lg font-semibold text-charcoal">£900,000</span>
                 </div>
                 <div className="pt-4">
-                  <p className="text-2xl font-bold text-shimmer-dark font-[family-name:var(--font-poppins)]">
+                  <p
+                    className="text-2xl font-bold font-[family-name:var(--font-poppins)]"
+                    style={{
+                      background: "linear-gradient(90deg, #2d8a4e 0%, #2d8a4e 40%, #6ee7a0 50%, #2d8a4e 60%, #2d8a4e 100%)",
+                      backgroundSize: "200% auto",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      animation: "shimmer 8s ease-in-out infinite",
+                    }}
+                  >
                     +£80,000 Net Equity
                   </p>
                   <p className="text-sm text-muted mt-1">
@@ -250,81 +317,41 @@ export default function ExtensionsPage() {
         </div>
       </section>
 
-      {/* Design Principles — light */}
+      {/* Design Principles */}
       <section className="py-24 md:py-32 bg-ice/50">
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-blue mb-4">
               Our Approach
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-poppins)] text-charcoal">
+            <h2 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-poppins)] text-charcoal mb-4">
               Design Philosophy
             </h2>
+            <p className="text-muted max-w-2xl mx-auto leading-relaxed">
+              Every extension we build is guided by six core principles that
+              ensure your new space feels intentional, not added on.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {designPrinciples.map((principle) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+            {designPrinciples.map((principle, i) => (
               <div
                 key={principle}
-                className="card-light rounded-xl p-6 text-center"
+                className="card-light rounded-2xl p-8 text-center group hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <p className="text-sm font-medium text-charcoal">{principle}</p>
+                <div className="text-3xl font-bold text-slate-blue/40 font-[family-name:var(--font-poppins)] mb-3">
+                  0{i + 1}
+                </div>
+                <p className="text-sm font-semibold text-charcoal">{principle}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Portfolio gallery — light */}
+      {/* Extension Types with Portfolio Images */}
       <section className="py-24 md:py-32 bg-white">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-blue mb-4">
-              Our Work
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-poppins)] text-charcoal">
-              Portfolio
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[1, 2, 3, 4].map((n) => (
-              <div
-                key={n}
-                className="relative aspect-[4/3] rounded-2xl overflow-hidden group"
-              >
-                <Image
-                  src={`/images/portfolio-${n}.jpg`}
-                  alt={`Extension project ${n}`}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Before / After — light */}
-      <section className="py-24 md:py-32 bg-ice/50">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-blue mb-4">
-              Transformation
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-poppins)] text-charcoal">
-              Before &amp; After
-            </h2>
-          </div>
-
-          <BeforeAfterSlider />
-        </div>
-      </section>
-
-      {/* Extension Types — light */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-[1400px] px-6">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-blue mb-4">
               Options
@@ -334,43 +361,57 @@ export default function ExtensionsPage() {
             </h2>
           </div>
 
-          <div className="space-y-6">
-            {extensionTypes.map((ext) => (
-              <div key={ext.title} className="card-light rounded-2xl p-8">
-                <div className="flex flex-col lg:flex-row lg:items-start gap-8">
-                  <div className="lg:w-1/3">
+          <div className="space-y-8">
+            {extensionTypes.map((ext, i) => (
+              <div key={ext.title} className="card-light rounded-2xl overflow-hidden">
+                <div className="flex flex-col lg:flex-row">
+                  {/* Image */}
+                  <div className="relative lg:w-2/5 aspect-[4/3] lg:aspect-auto">
+                    <Image
+                      src={ext.image}
+                      alt={ext.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  {/* Content */}
+                  <div className="lg:w-3/5 p-8">
                     <h3 className="text-xl font-semibold font-[family-name:var(--font-poppins)] text-charcoal mb-4">
                       {ext.title}
                     </h3>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm mb-6">
+                      <div>
                         <span className="text-muted">Est. Cost</span>
-                        <span className="text-charcoal font-medium">{ext.cost}</span>
+                        <p className="text-charcoal font-medium">{ext.cost}</p>
                       </div>
-                      <div className="flex justify-between">
+                      <div>
                         <span className="text-muted">Build Time</span>
-                        <span className="text-charcoal font-medium">{ext.buildTime}</span>
+                        <p className="text-charcoal font-medium">{ext.buildTime}</p>
                       </div>
-                      <div className="flex justify-between">
+                      <div>
                         <span className="text-muted">Route</span>
-                        <span className="text-charcoal font-medium">{ext.route}</span>
+                        <p className="text-charcoal font-medium">{ext.route}</p>
                       </div>
-                      <div className="flex justify-between">
+                      <div>
                         <span className="text-muted">Value Added</span>
-                        <span className="text-charcoal font-medium">{ext.valueAdded}</span>
+                        <p className="text-charcoal font-medium">{ext.valueAdded}</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="lg:w-2/3">
                     <ul className="space-y-3">
-                      {ext.benefits.map((benefit) => (
-                        <li key={benefit} className="flex gap-3 text-sm">
-                          <span className="text-navy mt-1 shrink-0">&#10003;</span>
-                          <span className="text-muted leading-relaxed">
-                            {benefit}
-                          </span>
-                        </li>
-                      ))}
+                      {ext.benefits.map((benefit) => {
+                        const colonIdx = benefit.indexOf(":");
+                        const label = colonIdx > -1 ? benefit.slice(0, colonIdx + 1) : "";
+                        const rest = colonIdx > -1 ? benefit.slice(colonIdx + 1) : benefit;
+                        return (
+                          <li key={benefit} className="flex gap-3 text-sm">
+                            <span className="text-navy mt-1 shrink-0">&#10003;</span>
+                            <span className="text-muted leading-relaxed">
+                              {label && <strong className="text-charcoal">{label}</strong>}
+                              {rest}
+                            </span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
@@ -380,7 +421,7 @@ export default function ExtensionsPage() {
         </div>
       </section>
 
-      {/* Comparison table — light */}
+      {/* Comparison table */}
       <section className="py-24 md:py-32 bg-white">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center mb-12">
@@ -425,33 +466,24 @@ export default function ExtensionsPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 md:py-32 bg-ice/50">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="text-center mb-16">
+      {/* Before / After */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="text-center mb-12">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-blue mb-4">
-              What Clients Say
+              Transformation
             </p>
             <h2 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-poppins)] text-charcoal">
-              Testimonials
+              Before &amp; After
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="card-light rounded-2xl p-8">
-                <p className="text-muted leading-relaxed mb-6 italic">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div>
-                  <p className="text-charcoal font-medium text-sm">{t.name}</p>
-                  <p className="text-muted text-xs">{t.location}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <BeforeAfterSlider />
         </div>
       </section>
+
+      {/* Testimonials Carousel */}
+      <TestimonialsCarousel testimonials={testimonials} />
 
       {/* CTA */}
       <section className="py-24 md:py-32 bg-white">
