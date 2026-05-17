@@ -102,10 +102,8 @@ export default function FurnitureSourcingPage() {
               return (
                 <div
                   key={item.step}
-                  className={`rounded-xl px-6 py-5 flex items-center justify-between ${
-                    isCustomer
-                      ? "bg-emerald-50 ring-1 ring-emerald-200/50"
-                      : "bg-charcoal/[0.03]"
+                  className={`rounded-xl px-6 py-5 flex items-center justify-between bg-white ${
+                    isCustomer ? "ring-1 ring-emerald-200/50" : ""
                   }`}
                 >
                   <div className="flex items-center gap-4">
