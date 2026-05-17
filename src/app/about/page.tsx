@@ -105,39 +105,38 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* The Edge: Chinese Speed & Precision */}
-          <div className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-blue mb-4">
-              The Edge
-            </p>
-            <h3 className="text-xl md:text-2xl font-semibold font-[family-name:var(--font-poppins)] text-charcoal mb-3">
-              Chinese Speed &amp; Precision
-            </h3>
-            <p className="text-muted max-w-2xl mx-auto leading-relaxed">
-              We don&apos;t use standard crews. Vincent hand selected a team of
-              builders with extensive experience in the Chinese construction
-              market, the fastest and most demanding building environment in the
-              world.
-            </p>
-          </div>
+          {/* The Edge: Chinese Speed & Precision — dark contrast card */}
+          <div className="mt-16 bg-[#2e3d5c] rounded-2xl p-8 md:p-12">
+            <div className="text-center mb-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400 mb-3">
+                The Edge
+              </p>
+              <h3 className="text-2xl md:text-3xl font-bold font-[family-name:var(--font-poppins)] text-white mb-4">
+                Chinese Speed &amp; Precision
+              </h3>
+              <p className="text-white max-w-2xl mx-auto leading-relaxed">
+                We don&apos;t use standard crews. Vincent hand selected a team of
+                builders with extensive experience in the Chinese construction
+                market, the fastest and most demanding building environment in the
+                world.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {strengths.map((item, i) => (
-              <div
-                key={item.title}
-                className={`card-light rounded-2xl p-8 animate-fade-in-up delay-${(i + 1) * 100}`}
-              >
-                <div className="text-5xl font-bold text-ice font-[family-name:var(--font-poppins)] mb-4">
-                  0{i + 1}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {strengths.map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-white/10 rounded-xl p-6"
+                >
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-emerald-400 mb-2">
+                    {item.title}
+                  </p>
+                  <p className="text-white text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold font-[family-name:var(--font-poppins)] text-charcoal mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

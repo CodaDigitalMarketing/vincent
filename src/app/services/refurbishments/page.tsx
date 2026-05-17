@@ -56,42 +56,50 @@ export default function RefurbishmentsPage() {
         </div>
       </section>
 
-      {/* Services grid */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => (
-              <div
-                key={service.title}
-                className={`card-light rounded-2xl p-8 animate-fade-in-up delay-${((i % 3) + 1) * 100}`}
-              >
-                <h3 className="text-lg font-semibold font-[family-name:var(--font-poppins)] text-charcoal mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-muted text-sm leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
+      {/* Content with capacity overlay */}
+      <section className="relative">
+        {/* Services grid (blurred behind overlay) */}
+        <div className="py-24 md:py-32 bg-white">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 blur-[1px] opacity-50 select-none pointer-events-none">
+              {services.map((service) => (
+                <div
+                  key={service.title}
+                  className="card-light rounded-2xl p-8"
+                >
+                  <h3 className="text-lg font-semibold font-[family-name:var(--font-poppins)] text-charcoal mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* CTA */}
-      <section className="py-24 md:py-32 bg-ice/50">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-poppins)] text-charcoal mb-6">
-            Transform Your Space
-          </h2>
-          <p className="text-muted text-lg mb-10">
-            Let&apos;s discuss your refurbishment project.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block px-10 py-4 bg-charcoal text-white font-semibold rounded-xl hover:bg-navy transition-colors text-sm"
-          >
-            Get a Quote
-          </Link>
+        {/* Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="mx-6 max-w-lg text-center bg-white/95 backdrop-blur-sm rounded-2xl p-10 md:p-14 shadow-lg">
+            <div className="w-14 h-14 rounded-full bg-charcoal/5 flex items-center justify-center mx-auto mb-6">
+              <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="text-charcoal/60">
+                <path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <p className="text-charcoal text-lg md:text-xl font-medium leading-relaxed">
+              Due to currently being at full capacity, Vincent and his team are
+              unable to take on new small scale works at this time.
+            </p>
+            <div className="mt-8">
+              <Link
+                href="/contact"
+                className="inline-block px-8 py-3.5 bg-charcoal text-white font-semibold rounded-xl hover:bg-navy transition-colors text-sm"
+              >
+                Join the Waitlist
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>
