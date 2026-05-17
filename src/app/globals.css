@@ -36,26 +36,24 @@ html {
 
 /* Shimmer animation for hero text */
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
 }
 
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    #7a8db0 0%,
-    #b8c1ec 15%,
-    #e8ecf4 30%,
+    #b8c1ec 0%,
+    #b8c1ec 40%,
     #ffffff 50%,
-    #e8ecf4 70%,
-    #b8c1ec 85%,
-    #7a8db0 100%
+    #b8c1ec 60%,
+    #b8c1ec 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite;
+  animation: shimmer 8s ease-in-out infinite;
   text-shadow: none;
 }
 

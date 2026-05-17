@@ -61,9 +61,11 @@ export default function Home() {
             Property Renovation &middot; London
           </p>
 
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold font-[family-name:var(--font-poppins)] text-shimmer leading-[0.9] mb-6 animate-fade-in-up delay-100">
-            VPR
-          </h1>
+          <div className="animate-fade-in-up delay-100 mb-6">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold font-[family-name:var(--font-poppins)] text-shimmer leading-[0.9]">
+              VPR
+            </h1>
+          </div>
 
           <p className="text-xl md:text-2xl text-white/80 font-light tracking-wide animate-fade-in-up delay-200">
             Vincent Property Renovation
