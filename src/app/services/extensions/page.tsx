@@ -164,7 +164,7 @@ export default function ExtensionsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-40 pb-40 md:pb-52 overflow-hidden grain bg-charcoal">
+      <section className="relative pt-40 pb-64 md:pb-80 lg:pb-96 overflow-hidden grain bg-charcoal">
         <video
           autoPlay
           muted

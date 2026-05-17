@@ -16,17 +16,6 @@ const services = [
     ),
   },
   {
-    title: "Home Refurbs and Cleaning",
-    description:
-      "Complete property refurbishments and professional cleaning services. No downtime, no excuses.",
-    href: "/services/refurbishments",
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
-      </svg>
-    ),
-  },
-  {
     title: "China Furniture Sourcing",
     description:
       "Direct access to vetted factories in China that manufacture for global luxury brands, at a fraction of the high street cost.",
@@ -35,6 +24,17 @@ const services = [
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
         <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
         <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
+      </svg>
+    ),
+  },
+  {
+    title: "Home Refurbs and Cleaning",
+    description:
+      "Complete property refurbishments and professional cleaning services. No downtime, no excuses.",
+    href: "/services/refurbishments",
+    icon: (
+      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+        <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
       </svg>
     ),
   },
