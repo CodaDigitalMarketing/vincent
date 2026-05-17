@@ -55,12 +55,6 @@ export default function ContactPage() {
                 </h3>
                 <div className="flex gap-4">
                   <a href="#" className="text-muted hover:text-charcoal transition-colors text-sm">
-                    Facebook
-                  </a>
-                  <a href="#" className="text-muted hover:text-charcoal transition-colors text-sm">
-                    Instagram
-                  </a>
-                  <a href="#" className="text-muted hover:text-charcoal transition-colors text-sm">
                     X
                   </a>
                 </div>

@@ -106,7 +106,7 @@ export default function AboutPage() {
           </div>
 
           {/* The Edge: Chinese Speed & Precision — dark contrast card */}
-          <div className="mt-16 bg-[#2e3d5c] rounded-2xl p-8 md:p-12">
+          <div className="mt-16 bg-[#3a4d6e] rounded-2xl p-8 md:p-12">
             <div className="text-center mb-10">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400 mb-3">
                 The Edge
@@ -126,7 +126,7 @@ export default function AboutPage() {
               {strengths.map((item) => (
                 <div
                   key={item.title}
-                  className="bg-white/10 rounded-xl p-6"
+                  className="bg-white/15 rounded-xl p-6"
                 >
                   <p className="text-[11px] font-bold uppercase tracking-widest text-emerald-400 mb-2">
                     {item.title}
