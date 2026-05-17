@@ -97,22 +97,49 @@ export default function FurnitureSourcingPage() {
           </div>
 
           <div className="flex flex-col gap-3">
-            {supplyChain.map((item) => (
-              <div
-                key={item.step}
-                className="card-light rounded-xl px-6 py-4 flex items-center justify-between"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="text-sm font-bold text-slate-blue w-6">
-                    {item.step}
-                  </span>
-                  <span className="text-charcoal font-medium">
-                    {item.label}
+            {supplyChain.map((item) => {
+              const isCustomer = item.step === "5";
+              return (
+                <div
+                  key={item.step}
+                  className={`rounded-xl px-6 py-5 flex items-center justify-between ${
+                    isCustomer
+                      ? "bg-emerald-50 ring-1 ring-emerald-200/50"
+                      : "bg-charcoal/[0.03]"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <span
+                      className={`text-xs font-bold w-7 h-7 rounded-full flex items-center justify-center ${
+                        isCustomer
+                          ? "bg-emerald-500 text-white"
+                          : "bg-charcoal/10 text-charcoal/50"
+                      }`}
+                    >
+                      {item.step}
+                    </span>
+                    <span
+                      className={`font-medium ${
+                        isCustomer ? "text-emerald-700" : "text-charcoal"
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+                  </div>
+                  <span
+                    className={`text-sm font-semibold px-3 py-1 rounded-full ${
+                      isCustomer
+                        ? "bg-emerald-500/10 text-emerald-600"
+                        : item.detail === "Raw Cost"
+                          ? "bg-charcoal/5 text-muted"
+                          : "bg-red-50 text-red-500"
+                    }`}
+                  >
+                    {item.detail}
                   </span>
                 </div>
-                <span className="text-muted text-sm">{item.detail}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -184,8 +211,10 @@ export default function FurnitureSourcingPage() {
                     <td className="px-6 py-4 text-charcoal font-semibold">
                       {row.vpr}
                     </td>
-                    <td className="px-6 py-4 text-charcoal font-semibold hidden sm:table-cell">
-                      {row.saving}
+                    <td className="px-6 py-4 hidden sm:table-cell">
+                      <span className="inline-block bg-emerald-500/10 text-emerald-600 font-semibold text-sm px-3 py-1 rounded-full">
+                        {row.saving}
+                      </span>
                     </td>
                   </tr>
                 ))}
