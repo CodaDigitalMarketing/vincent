@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "VPR Limited | Vincent Property Renovation",
   description:
     "Premium property renovation services in London. House extensions, home refurbishments, and China furniture sourcing. We execute with precision.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
